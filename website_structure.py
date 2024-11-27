@@ -26,35 +26,48 @@ print("Directory '% s' created" % directory)
 
 # List of subfolders created inside main directory
 list = (
-	"documents",
-	"documents/personal",
-	"documents/photos",
-	"documents/notes",
+	"app",
+	"app/console",
+	"app/exceptions",
 
-	"documents/work",
-	"documents/work/projects",
-	"documents/work/reports",
-	"documents/work/meeting_notes",
-	"documents/work/references",
-	
-	"learning",
-	"learning/linux",
-	"learning/coding",
-	"learning/coding/python",
-	"learning/coding/c++",
+	"app/https",
+	"app/https/controlers",
+	"app/https/middleware",
 
-	"downloads",
-	"downloads/documents",
-	"download/images",
-	"download/software",
+	"app/models",
+	"app/providers",
 
-	"projects",
-	"projects/personal_projects",
-	"projects/github",
+	"bootstrap",
+	"bootstrap/cache",
 
-	"code",
-	"code/python",
-	"code/c++",
+	"config",
+	"database",
+	"database/factories",
+	"database/migrations",
+	"database/seeders",
+
+	"public",
+	"public/js",
+	"public/img",
+	"public/CSS",
+
+	"resources",
+	"resources/css",
+	"resources/js",
+	"resources/lang",
+	"resources/views",
+
+	"routes",
+	"routes/channels.php",
+	"routes/console.php",
+	"routes/web.php",
+
+	"storage",
+	"storage/storage",
+	"storage/app",
+	"storage/app/public",
+	"storage/framework",
+	"storage/logs",
 )
 
 
