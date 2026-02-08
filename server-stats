@@ -1,0 +1,93 @@
+# !/usr/bin/env bash
+#
+# --------------------------------
+#CPU USAGE
+# -------------------------------
+# Linux CPU as idle time
+# 
+
+CPU_USED=$(LC_ALL=C mpstat 1 1 | awk '/all/ {print 100 - $NF}')
+
+echo "CPU Usage: ${CPU_USED}%"
+
+
+
+# -------------------------------
+# MEMORY USAGE
+# ------------------------------
+# Using free to get memory usage
+
+
+read MEMORY_USED_MB MEMORY_TOTAL_MB <<< $(
+	/usr/bin/free -m | awk 'NR==2 {print $3, $2}'
+)
+
+MEMORY_USED=$(awk "BEGIN {printf /"%.2f", $MEMORY_USED_MB/$MEMORY_TOTAL_MB*100}")
+
+echo "Memory Usage: ${MEMORY_USED_MB}MB / ${MEMORY_TOTAL_MB}MB (${MEMORY_USED})"
+
+
+#
+# ------------------------------
+# DISK USAGE
+# ------------------------------
+#
+
+read DISK_USED DISK_AVAIL DISK_PERCENT <<< $(
+	/usr/bin/df -h --output=used,avail,pcent / | tail -n 1
+)
+
+echo "Disk Usage: ${DISK_USED} / ${DISK_AVAIL} (${DISK_PERCENT})"
+
+
+#
+# ------------------------------
+# TOP processes
+# ------------------------------
+#
+
+
+# CPU
+echo "CPU Processes"
+printf "%-6s %-20s %s\n" "PID" "COMMAND" "CPU"
+
+ps -eo pid,comm,%cpu --sort=-%cpu | head -n 6 | tail -n 5 | \
+awk '{printf "%-6s %-20s %s\n", $1, $2, $3}'
+
+
+# memory
+echo "Memory processes"
+printf "%-6s %-20s %s\n" "PID" "COMMAND" "%MEM"
+
+ps -eo pid,comm,%mem --sort=-%mem | head -n 6 | tail -n 5 | \
+awk '{printf "%-6s %-20s %s\n", $1, $2, $3}'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
